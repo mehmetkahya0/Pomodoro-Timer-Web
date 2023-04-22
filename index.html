@@ -1,0 +1,259 @@
+<!------
+Alternative themes
+1- #18191A Background
+    #E4E5EB color
+    --->
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pomodoro</title>
+    <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-MX9rM1rV7iWg98yd2V7H48eLVBLivVmpKjJkSEiVbya9sRn2sJVzA8K1TtTzTt/Yq3ZZCnW8DYUIIfNzJ9lxjg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.13.0/css/all.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    <script id="_waub4m">var _wau = _wau || []; _wau.push(["dynamic", "9i1sdm3z2k", "b4m", "666666e4e5eb", "small"]);</script><script async src="//waust.at/d.js"></script>
+	<style>
+		* {
+			box-sizing: border-box;
+			margin: 0;
+			padding: 0;
+            font-family: 'roboto';
+		}
+		body {
+			background-color: #18191A;
+			color: #E4E5EB;
+			font-size: 16px;
+			line-height: 1.6;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+		}
+		h1 {
+			font-size: 3rem;
+			font-weight: bold;
+			margin-bottom: 2rem;
+
+		}
+		.timer {
+			font-size: 8rem;
+			margin-bottom: 1rem;
+			text-align: center;
+		}
+		.buttons {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			margin-bottom: 2rem;
+		}
+
+        .bottom {
+            margin-top: auto;
+            border-radius: 10px;
+            padding: 10px;
+            justify-content: center;
+            display: flex;
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            left: 0;
+
+        
+        }
+
+
+        .social-media{
+        width: fit-content;
+        height: auto;
+            padding: 0px;
+            display: flex;
+            position: center;
+            align-items: space-around;
+            justify-content:center;
+        }
+
+        .social-media a {
+            margin: 10px;
+            font-size: 2rem;
+            text-align:center;
+            display: inline-block;
+            color: var(--main-fonts-color);
+        }
+
+        .social-media a i{
+            cursor: pointer;
+        }
+
+        .social-media  a:hover {
+            color: rgba(5, 5, 5, 0.515);
+            text-shadow: 0 0 50px grey;
+        }
+
+
+		button {
+			border: none;
+			border-radius: 4px;
+			color: white;
+			cursor: pointer;
+			font-size: 1.2rem;
+			font-weight: 600;
+			padding: 1rem;
+			margin-right: 1rem;
+			transition: opacity 0.3s ease-in-out;
+		}
+		button:hover {
+			opacity: 0.8;
+		}
+		#start {
+			background-color: #00A0B0;
+		}
+		#pause {
+			background-color: #6A4C93;
+		}
+		#reset {
+			background-color: #CC333F;
+		}
+		#save {
+			background-color: #EB6841;
+		}
+		.counter {
+			font-size: 1.5rem;
+			font-weight: bolder;
+			text-align: center;
+			color: #5f5d63;
+		}
+		@media (max-width: 768px) {
+			.timer {
+				font-size: 6rem;
+			}
+			button {
+				font-size: 1rem;
+				padding: 0.8rem;
+			}
+			.counter {
+				font-size: 1.5rem;
+			}
+		}
+
+	</style>
+    </head>
+    <body>
+        <h1>Pomodoro Timer</h1>
+
+        <div class="timer">25:00</div>
+
+        <div class="buttons">
+            <button id="start"><i class="fas fa-play"></i> Start</button>
+            <button id="pause"><i class="fas fa-pause"></i> Pause</button>
+            <button id="reset">Reset</button>
+            <button id="save"><i class="fas fa-save"></i> Save</button>
+        </div>
+        <div class="counter">Tatal Pomodoro: 0</div>
+            
+        <div class="bottom">
+            <!--Social media links button-->
+            <div class="social-media">
+                <a href="mailto: mehmetkahyakas5@gmail.com" target="_blank"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+                <a href="https://www.twitter.com" target="_blank"><i class='fab fa-twitter'></i></a>
+                <a href="https://github.com/mehmetkahya0" target="_blank"><i class='fab fa-github'></i></a>
+                <a href="https://www.instagram.com/mehmettkahya" target="_blank"><i class='fab fa-instagram'></i></a>
+                <a href="https://open.spotify.com/playlist/3KD2GjZbh9etdo6Ufb2eAq?si=9d61500cc8fd4b1e" target="_blank"><i class='fab fa-spotify'></i></a>
+    
+            </div>
+        </div>     
+        <script>
+            let timerInterval;
+            let timeLeft;
+            let isTimerRunning = false;
+            let pomodoroCount = 0;
+
+            const pomodoroTime = 25*60;
+            const breakTime = 5*60;
+            const timerDisplay = document.querySelector('.timer');
+            const startButton = document.querySelector('#start');
+            const pauseButton = document.querySelector('#pause');
+            const resetButton = document.querySelector('#reset');
+            const saveButton = document.querySelector('#save');
+            const counterDisplay = document.querySelector('.counter');
+
+            startButton.addEventListener('click', startTimer);
+            pauseButton.addEventListener('click', pauseTimer);
+            resetButton.addEventListener('click', resetTimer);
+            saveButton.addEventListener('click', savePomodoro);
+
+            function startTimer() {
+                console.log("Time :" + pomodoroTime)
+                if (!isTimerRunning) {
+                    console.log("Time :" + pomodoroTime)
+                    isTimerRunning = true;
+                    timerInterval = setInterval(() => {
+                        timeLeft--;
+                        displayTimeLeft(timeLeft);
+                        if (timeLeft < 1) {
+                            clearInterval(timerInterval);
+                            isTimerRunning = false;
+                            pomodoroCount++;
+                            counterDisplay.textContent = `Tamamlanan Pomodoro Sayısı: ${pomodoroCount}`;
+                            if (pomodoroCount % 4 === 0) {
+                                timeLeft = breakTime;
+                                alert('İş için 25 dakika çalıştınız! 15 dakikalık bir mola yapma zamanı.');
+                            } else {
+                                timeLeft = pomodoroTime;
+                                alert('Mola bitti! Bir sonraki Pomodoro\'ya başlamak için Başlat\'a tıklayın.');
+                            }
+                            displayTimeLeft(timeLeft);
+                        }
+                    }, 1000);
+                    timeLeft = pomodoroTime;
+                    displayTimeLeft(timeLeft);
+                }
+            }
+
+            function pauseTimer() {
+                clearInterval(timerInterval);
+                isTimerRunning = false;
+            }
+
+            function resetTimer() {
+                clearInterval(timerInterval);
+                isTimerRunning = false;
+                pomodoroCount = 0;
+                counterDisplay.textContent = '';
+                timeLeft = pomodoroTime;
+                displayTimeLeft(timeLeft);
+            }
+
+            function savePomodoro() {
+                const pomodoroTime = pomodoroTime - timeLeft;
+                const pomodoroDate = new Date();
+                const pomodoroDateString = pomodoroDate.toLocaleDateString();
+                const pomodoroTimeString = pomodoroDate.toLocaleTimeString();
+                const pomodoroData = `${pomodoroDateString}, ${pomodoroTimeString}, ${pomodoroTime} saniye\n`;
+
+                // Verileri tarayıcının yerel depolama alanına kaydetme
+                if (localStorage.getItem('pomodoroData') === null) {
+                    localStorage.setItem('pomodoroData', pomodoroData);
+                } else {
+                    localStorage.setItem('pomodoroData', localStorage.getItem('pomodoroData') + pomodoroData);
+                }
+                alert('Başarıyla kaydedildi!');
+            }
+
+            function displayTimeLeft(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const remainderSeconds = seconds % 60;
+            const display = `${minutes < 10 ? '0' : ''}${minutes}:${remainderSeconds < 10 ? '0' : ''}${remainderSeconds}`;
+            timerDisplay.textContent = display;
+            }
+
+            
+        </script>
+    </body>
+</html>
