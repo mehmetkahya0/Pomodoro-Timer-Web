@@ -8,6 +8,7 @@ Live: https://pomodoro.mehmet0.repl.co
 - Option for automatic or manual breaks in between Pomodoro sessions.
 - Displays countdown during the session.
 - Keeps track of session history to monitor progress.
+- End voice (this feature isn't working Safari Browser right now.)
 
 
 ## Installation
