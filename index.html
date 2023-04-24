@@ -3,6 +3,8 @@ Alternative themes
 1- #18191A Background
     #E4E5EB color
     --->
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +18,7 @@ Alternative themes
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
-    <script id="_waub4m">var _wau = _wau || []; _wau.push(["dynamic", "9i1sdm3z2k", "b4m", "666666e4e5eb", "small"]);</script><script async src="//waust.at/d.js"></script>
+    </script>
 	<style>
 		* {
 			box-sizing: border-box;
@@ -35,6 +37,7 @@ Alternative themes
 			justify-content: center;
 			height: 100vh;
 		}
+
 		h1 {
 			font-size: 3rem;
 			font-weight: bold;
@@ -53,7 +56,15 @@ Alternative themes
 			justify-content: center;
 			margin-bottom: 2rem;
 		}
+        .copyright{
+            margin-top: auto;
+            margin-bottom: auto;
+            text-align: center;
+            display: flex;
+            position: absolute;
+            bottom: 0;
 
+        }
         .bottom {
             margin-top: auto;
             border-radius: 10px;
@@ -145,6 +156,12 @@ Alternative themes
 	</style>
     </head>
     <body>
+ 
+        <audio hidden id="alarm">
+            <source src="alarm.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+
         <h1>Pomodoro Timer</h1>
 
         <div class="timer">25:00</div>
@@ -153,10 +170,13 @@ Alternative themes
             <button id="start"><i class="fas fa-play"></i> Start</button>
             <button id="pause"><i class="fas fa-pause"></i> Pause</button>
             <button id="reset">Reset</button>
-            <button id="save"><i class="fas fa-save"></i> Save</button>
+        <!--   <button id="save"><i class="fas fa-save"></i> Save</button>   ---> 
         </div>
         <div class="counter">Tatal Pomodoro: 0</div>
-            
+
+        <div class="copyright">
+            Mehmet Kahya - This site is totally open-source - 2023 - Warning sound not working in Safari*
+        </div>
         <div class="bottom">
             <!--Social media links button-->
             <div class="social-media">
@@ -165,16 +185,17 @@ Alternative themes
                 <a href="https://github.com/mehmetkahya0" target="_blank"><i class='fab fa-github'></i></a>
                 <a href="https://www.instagram.com/mehmettkahya" target="_blank"><i class='fab fa-instagram'></i></a>
                 <a href="https://open.spotify.com/playlist/3KD2GjZbh9etdo6Ufb2eAq?si=9d61500cc8fd4b1e" target="_blank"><i class='fab fa-spotify'></i></a>
-    
+
             </div>
         </div>     
         <script>
+
             let timerInterval;
             let timeLeft;
             let isTimerRunning = false;
             let pomodoroCount = 0;
 
-            const pomodoroTime = 25*60;
+            const pomodoroTime = 0.1*60;
             const breakTime = 5*60;
             const timerDisplay = document.querySelector('.timer');
             const startButton = document.querySelector('#start');
@@ -200,13 +221,20 @@ Alternative themes
                             clearInterval(timerInterval);
                             isTimerRunning = false;
                             pomodoroCount++;
-                            counterDisplay.textContent = `Tamamlanan Pomodoro Sayısı: ${pomodoroCount}`;
+                            counterDisplay.textContent = `Number of Pomodoro Completed: ${pomodoroCount}`;
                             if (pomodoroCount % 4 === 0) {
                                 timeLeft = breakTime;
-                                alert('İş için 25 dakika çalıştınız! 15 dakikalık bir mola yapma zamanı.');
+                                alert('You have worked for 25 minutes for work! Time for a 15-minute break.');
                             } else {
                                 timeLeft = pomodoroTime;
-                                alert('Mola bitti! Bir sonraki Pomodoro\'ya başlamak için Başlat\'a tıklayın.');
+                                alert('Break is over! Click Start to start the next Pomodoro.');
+                                  // Ses elementini seç
+                                var alarm = document.getElementById("alarm");
+                                    // Ses seviyesini ayarla
+                                alarm.volume = 0.5;
+                                    // Ses dosyasını oynat
+                                alarm.play();
+             
                             }
                             displayTimeLeft(timeLeft);
                         }
@@ -243,14 +271,14 @@ Alternative themes
                 } else {
                     localStorage.setItem('pomodoroData', localStorage.getItem('pomodoroData') + pomodoroData);
                 }
-                alert('Başarıyla kaydedildi!');
+                alert('Successfully recorded!');
             }
 
             function displayTimeLeft(seconds) {
-            const minutes = Math.floor(seconds / 60);
-            const remainderSeconds = seconds % 60;
-            const display = `${minutes < 10 ? '0' : ''}${minutes}:${remainderSeconds < 10 ? '0' : ''}${remainderSeconds}`;
-            timerDisplay.textContent = display;
+                const minutes = Math.floor(seconds / 60);
+                const remainderSeconds = seconds % 60;
+                const display = `${minutes < 10 ? '0' : ''}${minutes}:${remainderSeconds < 10 ? '0' : ''}${remainderSeconds}`;
+                timerDisplay.textContent = display;
             }
 
             
