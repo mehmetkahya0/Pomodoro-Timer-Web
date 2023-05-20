@@ -1,7 +1,8 @@
 # Pomodoro Timer Web (WIP)
 
 This web application is a timer based on the Pomodoro technique. Users can set their work periods and take short breaks in between. The application is designed to increase user productivity.
-Live: https://pomodoro.mehmet0.repl.co
+Live: 
+https://mehmetkahya0.github.io/Pomodoro-Timer-Web/
 ## Features
 
 - User-friendly interface.
